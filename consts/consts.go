@@ -2,6 +2,7 @@ package consts
 
 const (
 	BASEURL = "https://api.themoviedb.org"
+	Version = "3"
 )
 
 // method

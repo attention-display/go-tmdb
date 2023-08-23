@@ -1,6 +1,9 @@
 package gotmdb
 
 import (
+	"fmt"
+
+	"github.com/attention-display/go-tmdb/consts"
 	"github.com/attention-display/go-tmdb/repo/requests"
 )
 
@@ -49,4 +52,24 @@ func (t *TMDb) SetApiKey(apiKey string) {
 // SetAccessToken sets the access token for the TMDb instance.
 func (t *TMDb) SetAccessToken(accessToken string) {
 	t.accessToken = accessToken
+}
+
+// getUrlPath constructs the full URL path for the specified endpoint by combining the base URL,
+// API version, and the given path.
+func (t *TMDb) getUrlPath(path string) string {
+	url := fmt.Sprintf("%s/%s/%s", consts.BASEURL, consts.Version, path)
+	if t.apiKey != "" {
+		url = fmt.Sprintf("%s?api_key=%s", url, t.apiKey)
+	}
+	return url
+}
+
+// getHeaders returns the headers to be included in the HTTP request.
+func (t *TMDb) getHeaders() map[string]string {
+	headers := make(map[string]string)
+	headers["Content-Type"] = "application/json"
+	if t.accessToken != "" {
+		headers["Authorization"] = fmt.Sprintf("Bearer %s", t.accessToken)
+	}
+	return headers
 }
