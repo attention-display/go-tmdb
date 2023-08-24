@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/attention-display/go-tmdb/consts"
-	"github.com/attention-display/go-tmdb/repo/requests"
 )
 
 // The Movie Database
@@ -13,14 +12,11 @@ type TMDb struct {
 	apiKey string
 	// TMDb access token
 	accessToken string
-	// http client
-	requests.Requests
 }
 
 // New the movie db client
 func NewTMDb(opts ...Option) *TMDb {
 	var t TMDb
-	t.Requests = requests.Requests{}
 	for _, opt := range opts {
 		opt(&t)
 	}
