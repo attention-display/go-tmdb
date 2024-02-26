@@ -1,10 +1,7 @@
 package gotmdb
 
 import (
-	"fmt"
-
 	"github.com/attention-display/go-tmdb/conf"
-	"github.com/attention-display/go-tmdb/consts"
 	"github.com/attention-display/go-tmdb/dto"
 )
 
