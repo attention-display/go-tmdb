@@ -7,8 +7,9 @@ const (
 
 // method
 const (
-	GET  = "GET"
-	POST = "POST"
+	GET    = "GET"
+	POST   = "POST"
+	DELETE = "DELETE"
 )
 
 // api path
