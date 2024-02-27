@@ -7,16 +7,16 @@ import (
 )
 
 //go:generate mockgen -destination=mock/mock_http_client.go -package mock -source=requests.go
-type HttpClient interface {
+type HttpClientInterface interface {
 	Post(url string, headers map[string]string, postBody []byte) (interface{}, error)
 	Get(url string, headers map[string]string) (interface{}, error)
 	Delete(url string, headers map[string]string) (interface{}, error)
 }
 
-type httpClientImpl struct{}
+type HttpClient struct{}
 
-func NewHttpClient() httpClientImpl {
-	return httpClientImpl{}
+func NewHttpClient() HttpClient {
+	return HttpClient{}
 }
 
 func sendRequest(method, url string, headers map[string]string, body []byte) ([]byte, error) {
