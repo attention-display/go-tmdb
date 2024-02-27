@@ -1,25 +1,30 @@
 package conf
 
 import (
+	"fmt"
+
 	"github.com/attention-display/go-tmdb/consts"
 )
 
 type Configuration struct {
-	Host      string
-	Version   string
-	Headers   map[string]string
-	ApiConfig ApiConfig
+	Host           string
+	Version        string
+	DefaultHeaders map[string]string
+	ApiConfig      ApiConfig
 }
 
 func NewDefaultConf(auth ApiConfig) *Configuration {
-	return &Configuration{
-		Host:      consts.BASEURL,
-		Version:   consts.Version,
-		Headers:   make(map[string]string),
-		ApiConfig: auth,
+	cfg := &Configuration{
+		Host:           consts.BASEURL,
+		Version:        consts.Version,
+		DefaultHeaders: make(map[string]string),
+		ApiConfig:      auth,
 	}
+	cfg.SetHeaders("accept", "application/json")
+	cfg.SetHeaders("Authorization", fmt.Sprintf("Bearer %s", auth.apiKey))
+	return cfg
 }
 
 func (c *Configuration) SetHeaders(key, val string) {
-	c.Headers[key] = val
+	c.DefaultHeaders[key] = val
 }

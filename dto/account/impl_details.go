@@ -19,13 +19,13 @@ func (r *Accountdetailsreply) Marshal() ([]byte, error) {
 }
 
 type Accountdetailsreply struct {
-	Avatar       Avatar `json:"avatar"`
+	IncludeAdult bool   `json:"include_adult"`
 	ID           int64  `json:"id"`
 	ISO639_1     string `json:"iso_639_1"`
 	ISO3166_1    string `json:"iso_3166_1"`
 	Name         string `json:"name"`
-	IncludeAdult bool   `json:"include_adult"`
 	Username     string `json:"username"`
+	Avatar       Avatar `json:"avatar"`
 }
 
 type Avatar struct {
@@ -42,5 +42,5 @@ type Tmdb struct {
 }
 
 func (a Account) Details(accountId int32, opts DetailsReq) (*Accountdetailsreply, error) {
-	a.Get()
+	return nil, nil
 }

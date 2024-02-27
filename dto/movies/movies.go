@@ -3,11 +3,11 @@ package movies
 import (
 	"fmt"
 
-	"github.com/attention-display/go-tmdb/repo/requests"
+	"github.com/attention-display/go-tmdb/repo/proxy"
 )
 
 type Movies struct {
-	client requests.Requests
+	client *proxy.ProxyClient
 }
 
 func (m *Movies) Details() {

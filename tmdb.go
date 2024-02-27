@@ -5,15 +5,14 @@ import (
 	"github.com/attention-display/go-tmdb/dto"
 )
 
-// The Movie Database
-type tmdbClient struct {
-	cfg *conf.Config
+type tmdbSvr struct {
+	Cfg *conf.Configuration
 	dto.Controller
 }
 
-func NewTMDbClient(c *conf.Config) *tmdbClient {
-	return &tmdbClient{
-		cfg:        c,
+func NewTMDbClient(c *conf.Configuration) *tmdbSvr {
+	return &tmdbSvr{
+		Cfg:        c,
 		Controller: dto.Controller{},
 	}
 }

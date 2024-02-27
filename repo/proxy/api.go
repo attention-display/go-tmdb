@@ -5,7 +5,15 @@ import (
 	"github.com/attention-display/go-tmdb/repo/requests"
 )
 
-type proxyClient struct {
-	cfg  *conf.Config
-	http requests.Requests
+type ProxyClient struct {
+	Urlib requests.HttpClient
+	cfg   *conf.Configuration
+}
+
+func NewProxyClient(cfg *conf.Configuration) *ProxyClient {
+	client := requests.NewHttpClient()
+	return &ProxyClient{
+		Urlib: client,
+		cfg:   cfg,
+	}
 }
