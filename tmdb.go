@@ -13,6 +13,6 @@ type tmdbSvr struct {
 func NewTMDbClient(c *conf.Configuration) *tmdbSvr {
 	return &tmdbSvr{
 		Cfg:        c,
-		Controller: dto.Controller{},
+		Controller: dto.NewController(c),
 	}
 }

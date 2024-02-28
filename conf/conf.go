@@ -10,10 +10,10 @@ type Configuration struct {
 	Host           string
 	Version        string
 	DefaultHeaders map[string]string
-	ApiConfig      ApiConfig
+	ApiConfig      *ApiConfig
 }
 
-func NewDefaultConf(auth ApiConfig) *Configuration {
+func NewDefaultConf(auth *ApiConfig) *Configuration {
 	cfg := &Configuration{
 		Host:           consts.BASEURL,
 		Version:        consts.Version,

@@ -7,7 +7,7 @@ type ApiConfig struct {
 	accessToken string
 }
 
-func NewConfig(opts ...Option) *ApiConfig {
+func NewApiConfig(opts ...Option) *ApiConfig {
 	c := ApiConfig{}
 	for _, f := range opts {
 		f(&c)
