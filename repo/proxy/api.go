@@ -7,13 +7,13 @@ import (
 
 type ProxyClient struct {
 	Urlib requests.HttpClient
-	cfg   *conf.Configuration
+	Cfg   *conf.Configuration
 }
 
 func NewProxyClient(cfg *conf.Configuration) *ProxyClient {
 	client := requests.NewHttpClient()
 	return &ProxyClient{
 		Urlib: client,
-		cfg:   cfg,
+		Cfg:   cfg,
 	}
 }

@@ -8,9 +8,9 @@ import (
 
 //go:generate mockgen -destination=mock/mock_http_client.go -package mock -source=requests.go
 type HttpClientInterface interface {
-	Post(url string, headers map[string]string, postBody []byte) (interface{}, error)
-	Get(url string, headers map[string]string) (interface{}, error)
-	Delete(url string, headers map[string]string) (interface{}, error)
+	Post(url string, headers map[string]string, postBody []byte) ([]byte, error)
+	Get(url string, headers map[string]string) ([]byte, error)
+	Delete(url string, headers map[string]string) ([]byte, error)
 }
 
 type HttpClient struct{}

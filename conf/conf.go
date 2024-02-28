@@ -28,3 +28,7 @@ func NewDefaultConf(auth *ApiConfig) *Configuration {
 func (c *Configuration) SetHeaders(key, val string) {
 	c.DefaultHeaders[key] = val
 }
+
+func (c *Configuration) GetUrl() string {
+	return fmt.Sprintf("%s/%s", c.Host, c.Version)
+}
