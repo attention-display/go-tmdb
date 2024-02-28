@@ -22,6 +22,7 @@ func NewDefaultConf(auth *ApiConfig) *Configuration {
 	}
 	cfg.SetHeaders("accept", "application/json")
 	cfg.SetHeaders("Authorization", fmt.Sprintf("Bearer %s", auth.apiKey))
+	cfg.SetHeaders("content-type", "application/json")
 	return cfg
 }
 
