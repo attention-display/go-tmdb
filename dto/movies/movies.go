@@ -17,6 +17,6 @@ func NewMovies(cfg *conf.Configuration) Movies {
 	}
 }
 
-func (m *Movies) Details() {
-	fmt.Println("movies details")
+func (a Movies) getUrlPath() string {
+	return fmt.Sprintf("%s/%s", a.client.Cfg.GetUrl(), "movie")
 }
