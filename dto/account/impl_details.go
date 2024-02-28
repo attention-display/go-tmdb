@@ -2,10 +2,19 @@ package account
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 type DetailsReq struct {
 	SessionId string
+}
+
+func (d DetailsReq) getUrlPath() string {
+	if d.SessionId == "" {
+		return ""
+	} else {
+		return fmt.Sprintf("?session_id=%s", d.SessionId)
+	}
 }
 
 func UnmarshalAccountdetailsreply(data []byte) (Accountdetailsreply, error) {
@@ -42,5 +51,14 @@ type Tmdb struct {
 }
 
 func (a Account) Details(accountId int32, opts DetailsReq) (*Accountdetailsreply, error) {
-	return nil, nil
+	url := fmt.Sprintf("%s/%d%s", a.getUrlPath(), accountId, opts.getUrlPath())
+	resp, err := a.client.Urlib.Get(url, a.client.Cfg.DefaultHeaders)
+	if err != nil {
+		return nil, err
+	}
+	res, err := UnmarshalAccountdetailsreply(resp)
+	if err != nil {
+		return nil, err
+	}
+	return &res, nil
 }

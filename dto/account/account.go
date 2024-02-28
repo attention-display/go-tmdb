@@ -1,6 +1,8 @@
 package account
 
 import (
+	"fmt"
+
 	"github.com/attention-display/go-tmdb/conf"
 	"github.com/attention-display/go-tmdb/repo/proxy"
 )
@@ -13,4 +15,8 @@ func NewAccount(cfg *conf.Configuration) Account {
 	return Account{
 		client: proxy.NewProxyClient(cfg),
 	}
+}
+
+func (a Account) getUrlPath() string {
+	return fmt.Sprintf("%s/%s", a.client.Cfg.GetUrl(), "account")
 }
