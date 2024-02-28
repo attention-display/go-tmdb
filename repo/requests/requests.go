@@ -2,6 +2,8 @@ package requests
 
 import (
 	"bytes"
+	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
 )
@@ -17,6 +19,18 @@ type HttpClient struct{}
 
 func NewHttpClient() HttpClient {
 	return HttpClient{}
+}
+
+type errorResponse struct {
+	Success       bool
+	StatusCode    int
+	StatusMessage string
+}
+
+func unmarshalErrResponse(data []byte) (errorResponse, error) {
+	var r errorResponse
+	err := json.Unmarshal(data, &r)
+	return r, err
 }
 
 func sendRequest(method, url string, headers map[string]string, body []byte) ([]byte, error) {
@@ -41,5 +55,12 @@ func sendRequest(method, url string, headers map[string]string, body []byte) ([]
 		return nil, err
 	}
 
+	if response.StatusCode != 200 {
+		res, err := unmarshalErrResponse(responseBody)
+		if err != nil {
+			return nil, err
+		}
+		return nil, errors.New(res.StatusMessage)
+	}
 	return responseBody, nil
 }
