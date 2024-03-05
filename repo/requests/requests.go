@@ -12,7 +12,7 @@ import (
 type HttpClientInterface interface {
 	Post(url string, headers map[string]string, postBody []byte) ([]byte, error)
 	Get(url string, headers map[string]string) ([]byte, error)
-	Delete(url string, headers map[string]string) ([]byte, error)
+	Delete(url string, headers map[string]string, postBody []byte) ([]byte, error)
 }
 
 type HttpClient struct{}
